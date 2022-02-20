@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nothingbutjazz/search_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -59,19 +60,25 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisCount: 2,
           padding: EdgeInsets.all(10),
           children: [
-            Card(
-              shadowColor: Colors.yellow,
-              elevation: 20,
-              child: GridTile(
-                  child: Image.asset('assets/images/search.png'),
-                  footer: GridTileBar(
-                    title: Text(
-                      'Search',
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                  )),
+            InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SearchPage()));
+              },
+              child: Card(
+                shadowColor: Colors.yellow,
+                elevation: 20,
+                child: GridTile(
+                    child: Image.asset('assets/images/search.png'),
+                    footer: GridTileBar(
+                      title: Text(
+                        'Search',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                    )),
+              ),
             )
           ],
         ));
