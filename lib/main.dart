@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nothingbutjazz/search_page.dart';
+import 'package:nothingbutjazz/pages/search_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,20 +10,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Nothing But Jazz',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        scaffoldBackgroundColor: Color.fromARGB(255, 75, 0, 130),
-      ),
-      home: MyHomePage(title: 'Nothing But Jazz'),
-    );
+        title: 'Nothing But Jazz',
+        theme: ThemeData(
+          primarySwatch: Colors.purple,
+          scaffoldBackgroundColor: Color.fromARGB(255, 75, 0, 130),
+        ),
+        initialRoute: 'home',
+        routes: {
+          'home': (context) => MyHomePage(),
+          'searchpage': (context) => SearchPage(),
+        });
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
+          title: Text('Nothing But Jazz'),
         ),
         body: GridView.count(
           crossAxisCount: 2,
@@ -62,8 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SearchPage()));
+                Navigator.pushNamed(context, 'searchpage');
               },
               child: Card(
                 shadowColor: Colors.yellow,
