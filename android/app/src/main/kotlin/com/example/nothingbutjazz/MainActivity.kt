@@ -19,7 +19,7 @@ import kotlinx.serialization.json.Json
 
 class MainActivity : FlutterActivity() {
 
-    val algoliaAPIAdapter = AlgoliaAPIFlutterAdapter(ApplicationID("latency"), APIKey("1f6fd3a6fb973cb08419fe7d288fa4db"))
+    val algoliaAPIAdapter = AlgoliaAPIFlutterAdapter(ApplicationID("Y1WE3C3W0S"), APIKey("a16f0a8a2fc5f8788d5d456035709610"))
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
