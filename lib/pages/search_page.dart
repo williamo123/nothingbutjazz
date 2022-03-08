@@ -67,9 +67,9 @@ class _SearchPageState extends State<SearchPage> {
                               Container(
                                   width: 50,
                                   child: Image.network(
-                                      '${_hitsList[index].image}')),
+                                      '${_hitsList[index].albumImageString}')),
                               SizedBox(width: 10),
-                              Expanded(child: Text('${_hitsList[index].name}'))
+                              Expanded(child: Text('${_hitsList[index].songString}'))
                             ]));
                       }))
         ]));
@@ -102,7 +102,7 @@ class AlgoliaAPI {
   Future<dynamic> search(String query) async {
     try {
       var response =
-          await platform.invokeMethod('search', ['instant_search', query]);
+          await platform.invokeMethod('search', ['jazz', query]);
       return jsonDecode(response);
     } on PlatformException catch (_) {
       return null;
@@ -111,12 +111,12 @@ class AlgoliaAPI {
 }
 
 class SearchHit {
-  final String name;
-  final String image;
+  final String songString;
+  final String albumImageString;
 
-  SearchHit(this.name, this.image);
+  SearchHit(this.songString, this.albumImageString);
 
   static SearchHit fromJson(Map<String, dynamic> json) {
-    return SearchHit(json['name'], json['image']);
+    return SearchHit(json['songString'], json['albumImageString']);
   }
 }
