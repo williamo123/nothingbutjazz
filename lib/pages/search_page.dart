@@ -30,7 +30,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Algolia & Flutter'),
+          title: Text('Search Jazz'),
         ),
         body: Column(children: <Widget>[
           Container(
@@ -61,16 +61,14 @@ class _SearchPageState extends State<SearchPage> {
                       itemCount: _hitsList.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                            height: 50,
+                            height: 75,
                             padding: EdgeInsets.all(8),
-                            child: Row(children: <Widget>[
+                            child: Column(children: <Widget>[
                               Container(
-                                  width: 50,
-                                  child: Image.network(
-                                      '${_hitsList[index].albumImageString}')),
-                              SizedBox(width: 10),
-                              Expanded(child: Text('${_hitsList[index].songString}'))
-                            ]));
+                                  child: RichText(textAlign: TextAlign.center, text: TextSpan(children: [TextSpan(text: 'Artist: ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)), TextSpan(text: '${_hitsList[index].composerString}', style: TextStyle(color: Colors.grey))])
+                                      )),
+                              Expanded(child: RichText(textAlign: TextAlign.center, text: TextSpan(children: [TextSpan(text: 'Song: ', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)), TextSpan(text: '${_hitsList[index].songString}', style: TextStyle(color: Colors.grey))])
+                        ))]));
                       }))
         ]));
   }
@@ -112,11 +110,11 @@ class AlgoliaAPI {
 
 class SearchHit {
   final String songString;
-  final String albumImageString;
+  final String composerString;
 
-  SearchHit(this.songString, this.albumImageString);
+  SearchHit(this.songString, this.composerString);
 
   static SearchHit fromJson(Map<String, dynamic> json) {
-    return SearchHit(json['songString'], json['albumImageString']);
+    return SearchHit(json['songString'], json['composerString']);
   }
 }
